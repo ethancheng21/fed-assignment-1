@@ -1,4 +1,4 @@
-const USE_LOCAL_API = true; // Change to `false` when switching to RESTdb.io
+const USE_LOCAL_API = false; // Change to `false` when switching to RESTdb.io
 
 const API_URL = USE_LOCAL_API
     ? "http://localhost:5000/listing"
