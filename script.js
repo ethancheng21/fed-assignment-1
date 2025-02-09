@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
+    const API_KEY = "679628de0acc0620a20d364d";
+
     // Delay the setup of event listeners to ensure the DOM is fully loaded
     setTimeout(() => {
         const searchBar = document.getElementById("searchBar");
@@ -6,68 +9,66 @@ document.addEventListener("DOMContentLoaded", function() {
         const listingsContainer = document.getElementById("featured-listings-container");
 
         // Get the condition buttons and the clear filter button
-        const conditionButtons = document.querySelectorAll('.condition-btn'); // Condition buttons
-        const clearFilterBtn = document.getElementById("clear-filters"); // Clear filter button
-        
-        let selectedCondition = ''; // Initialize selected condition as empty string
+        const conditionButtons = document.querySelectorAll(".condition-btn");
+        const clearFilterBtn = document.getElementById("clear-filters");
 
-        // Log elements to verify they are loaded
-        console.log("Search Bar:", searchBar);
-        console.log("Search Button:", searchBtn);
-        console.log("Listings Container:", listingsContainer);
+        let selectedCondition = ""; // Initialize selected condition as empty string
 
-        // If any element is missing, log an error
         if (!searchBar || !searchBtn || !listingsContainer || !clearFilterBtn) {
             console.error("Required elements not found!");
             return;
         }
 
         // Search Button Click Event
-        searchBtn.addEventListener("click", function() {
+        searchBtn.addEventListener("click", function () {
             const query = searchBar.value.toLowerCase();
-            console.log("Search Query on Button Click:", query); // Log the query when clicked
-            fetchListings(query, selectedCondition); // Fetch listings with condition filter
+            fetchListings(query, selectedCondition);
         });
 
         // Condition Button Click Event (Filter by condition)
-        conditionButtons.forEach(button => {
-            button.addEventListener('click', function() {
+        conditionButtons.forEach((button) => {
+            button.addEventListener("click", function () {
                 selectedCondition = this.innerText; // Set selected condition based on clicked button
                 highlightSelectedCondition(button);
             });
         });
 
         // Clear Filters Button Click Event
-        clearFilterBtn.addEventListener("click", function() {
-            // Reset condition filter to default
-            selectedCondition = '';
-            conditionButtons.forEach(button => button.classList.remove('selected')); // Remove all selected condition styles
-            fetchListings(searchBar.value.toLowerCase(), ''); // Re-fetch listings without filters
+        clearFilterBtn.addEventListener("click", function () {
+            selectedCondition = ""; // Reset condition filter to default
+            conditionButtons.forEach((button) => button.classList.remove("selected")); // Remove all selected condition styles
+            fetchListings(searchBar.value.toLowerCase(), ""); // Re-fetch listings without filters
         });
 
         // Initial fetch for featured listings
-        fetchFeaturedListings();
+        fetchFeaturedListings(API_URL, API_KEY);
     }, 500); // Delay by 500ms
 });
 
 // Fetch Listings Based on Search Query and Condition
 async function fetchListings(query, selectedCondition) {
-    if (!query) {
-        console.error("Search query is empty.");
-        return;
-    }
-
-    console.log("Search Query:", query);
-    console.log("Selected Condition:", selectedCondition);
+    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
+    const API_KEY = "679628de0acc0620a20d364d";
 
     try {
-        const response = await fetch("db.json"); // Fetch the local db.json
+        const response = await fetch(`${API_URL}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-apikey": API_KEY,
+            },
+        });
+
         const listings = await response.json();
 
         // Filter the listings by matching the title with the query and condition
-        const filteredListings = listings.listing.filter(item => {
-            const matchesQuery = item.title.toLowerCase().includes(query.toLowerCase());
-            const matchesCondition = selectedCondition ? item.condition.toLowerCase() === selectedCondition.toLowerCase() : true;
+        const filteredListings = listings.filter((item) => {
+            const matchesQuery = query
+                ? item.title.toLowerCase().includes(query.toLowerCase())
+                : true;
+            const matchesCondition = selectedCondition
+                ? item.condition.toLowerCase() === selectedCondition.toLowerCase()
+                : true;
 
             return matchesQuery && matchesCondition;
         });
@@ -83,22 +84,22 @@ function displaySearchResults(listings) {
     const resultsContainer = document.getElementById("search-results-container");
     resultsContainer.innerHTML = ""; // Clear previous results
 
-
     if (listings.length === 0) {
-        resultsContainer.innerHTML = "<p>No items found based on your search and filters.</p>";
+        resultsContainer.innerHTML =
+            "<p>No items found based on your search and filters.</p>";
         return;
     }
 
-
-    listings.forEach(item => {
+    listings.forEach((item) => {
         const itemElement = document.createElement("div");
         itemElement.classList.add("listing");
 
-
         // Create a clickable link that redirects to productview.html with the product ID in the URL
         itemElement.innerHTML = `
-            <a href="productview.html?id=${item.id}" class="listing-link">
-                <img src="${item.image ? item.image : 'https://via.placeholder.com/150'}"
+            <a href="productview.html?id=${item._id}" class="listing-link">
+                <img src="${
+                    item.image ? item.image : "https://via.placeholder.com/150"
+                }"
                      alt="${item.title}"
                      onerror="this.src='https://via.placeholder.com/150';" />
                 <h3>${item.title}</h3>
@@ -107,46 +108,55 @@ function displaySearchResults(listings) {
                 <span>Condition: ${item.condition}</span>
             </a>
         `;
-       
+
         resultsContainer.appendChild(itemElement);
     });
 }
 
-
-
-
 // Highlight selected condition button
 function highlightSelectedCondition(selected) {
-    const buttons = document.querySelectorAll('.condition-btn');
-    buttons.forEach(button => button.classList.remove('selected')); // Remove previous selections
-    selected.classList.add('selected'); // Highlight current selection
+    const buttons = document.querySelectorAll(".condition-btn");
+    buttons.forEach((button) => button.classList.remove("selected")); // Remove previous selections
+    selected.classList.add("selected"); // Highlight current selection
 }
 
-
 // Fetch Featured Listings
-async function fetchFeaturedListings() {
+async function fetchFeaturedListings(API_URL, API_KEY) {
     try {
-        const response = await fetch("db.json");
-        const listings = await response.json();
-        const listingsContainer = document.querySelector('#featured-listings-container');
+        const response = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-apikey": API_KEY,
+            },
+        });
 
+        const listings = await response.json();
+        const listingsContainer = document.querySelector(
+            "#featured-listings-container"
+        );
 
         if (!listingsContainer) {
             console.error("Error: Listings container not found.");
             return;
         }
 
-
         if (!listings || listings.length === 0) {
-            listingsContainer.innerHTML = '<p>No featured listings available.</p>';
+            listingsContainer.innerHTML =
+                "<p>No featured listings available.</p>";
             return;
         }
 
-
-        listingsContainer.innerHTML = listings.listing.map((listing) => `
+        listingsContainer.innerHTML = listings
+            .map(
+                (listing) => `
             <div class="listing">
-                <a href="productview.html?id=${listing.id}" class="listing-link">
-                    <img src="${listing.image ? listing.image : 'https://via.placeholder.com/150'}"
+                <a href="productview.html?id=${listing._id}" class="listing-link">
+                    <img src="${
+                        listing.image
+                            ? listing.image
+                            : "https://via.placeholder.com/150"
+                    }"
                          alt="${listing.title}"
                          onerror="this.src='https://via.placeholder.com/150';" />
                     <h3>${listing.title}</h3>
@@ -155,10 +165,11 @@ async function fetchFeaturedListings() {
                     <span>Condition: ${listing.condition}</span>
                 </a>
             </div>
-        `).join('');
+        `
+            )
+            .join("");
     } catch (error) {
-        console.error('Error fetching featured listings:', error);
-        alert('Failed to load featured listings.');
+        console.error("Error fetching featured listings:", error);
+        alert("Failed to load featured listings.");
     }
 }
-
