@@ -11,6 +11,8 @@ html, body {
 }
 
 
+
+
 /* Header Styling */
 header {
     position: sticky;
@@ -28,11 +30,15 @@ header {
 }
 
 
+
+
 header h1 {
     margin: 0;
     font-size: 1.5rem;
     white-space: nowrap; /* Prevent wrapping */
 }
+
+
 
 
 /* Navigation Styling */
@@ -47,6 +53,8 @@ nav ul {
 }
 
 
+
+
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -58,10 +66,14 @@ nav ul li a {
 }
 
 
+
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
+
+
 
 
 /* Hamburger Menu Styling */
@@ -71,6 +83,8 @@ nav ul li a:hover {
     gap: 5px;
     cursor: pointer;
 }
+
+
 
 
 .hamburger span {
@@ -83,9 +97,13 @@ nav ul li a:hover {
 }
 
 
+
+
 .hamburger:hover span {
     background-color: #FFD4A3; /* Subtle hover effect */
 }
+
+
 
 
 /* Dropdown Menu Styling (Header-Connected and Right-Aligned) */
@@ -105,9 +123,13 @@ nav.active ul {
 }
 
 
+
+
 nav.active ul li {
     width: 100%; /* Ensure the list item takes full width */
 }
+
+
 
 
 nav.active ul li a {
@@ -119,10 +141,16 @@ nav.active ul li a {
 }
 
 
+
+
 nav.active ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
     color: white;
 }
+
+
+
+
 
 
 
@@ -140,6 +168,8 @@ main {
 }
 
 
+
+
 /* Auth Container Styling */
 .auth-container {
     background: white;
@@ -153,12 +183,16 @@ main {
 }
 
 
+
+
 .auth-container h2 {
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
     font-weight: bold;
     color: #333;
 }
+
+
 
 
 .auth-container label {
@@ -171,6 +205,8 @@ main {
 }
 
 
+
+
 .auth-container input {
     width: 100%;
     padding: 0.7rem;
@@ -180,6 +216,8 @@ main {
     margin-bottom: 1.5rem;
     box-sizing: border-box;
 }
+
+
 
 
 .auth-container button {
@@ -197,9 +235,13 @@ main {
 }
 
 
+
+
 .auth-container button:hover {
     background-color: #E86D2C;
 }
+
+
 
 
 .auth-container p {
@@ -208,15 +250,21 @@ main {
 }
 
 
+
+
 .auth-container p a {
     color: #E86D2C;
     text-decoration: none;
 }
 
 
+
+
 .auth-container p a:hover {
     text-decoration: underline;
 }
+
+
 
 
 /* Footer Styling */
@@ -232,6 +280,8 @@ footer {
 }
 
 
+
+
 /* Lottie Animation Styling */
 .lottie-container {
     display: flex;
@@ -243,9 +293,13 @@ footer {
 }
 
 
+
+
 .lottie-container.left {
     left: calc(50% - 600px);
 }
+
+
 
 
 .lottie-container.right {
@@ -253,10 +307,14 @@ footer {
 }
 
 
+
+
 .lottie-container dotlottie-player {
     width: 250px;
     height: auto;
 }
+
+
 
 
 @media (max-width: 768px) {
@@ -287,9 +345,12 @@ footer {
 
     nav.active ul li a {
         font-size: 0.9rem; /* Adjust for smaller screens */
-        padding: 0.6rem 0;
+        padding: 0.8rem 1.5rem; /* Increased left and right padding for spacing */
+        text-align: left; /* Align text to the left */
+    }
+
+
+    nav.active ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
     }
 }
-
-
-

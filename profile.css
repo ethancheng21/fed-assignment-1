@@ -1,169 +1,3 @@
-
-
-
-/* Add styling for the profile header container */
-.profile-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    margin: 0 auto;
-    width: 90%; /* Adjust the width of the profile container */
-    margin-top: -50px; /* Overlaps with the background */
-    position: relative; /* Enable positioning */
-}
-
-/* Profile Picture Styling */
-.profile-picture img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover;
-    border: 3px solid #ddd; /* Adds a light border around the picture */
-}
-
-/* Profile Details Styling */
-.profile-details h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.profile-details p {
-    margin: 0.5rem 0;
-    color: gray;
-    font-size: 1rem;
-}
-
-/* Edit Profile Button Styling */
-.edit-profile-btn {
-    margin-top: 0.5rem;
-    background-color: #E86D2C;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.edit-profile-btn:hover {
-    background-color: #d75b24;
-}
-
-
-
-
-
-
-
-
-
-
-
-/* Listings Section */
-.listing-grid {
-    display: grid; /* Use CSS Grid */
-    grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
-    gap: 1.5rem; /* Add spacing between items */
-    width: 60%; /* Stretch to 60% of the screen width (leaving 20% on each side) */
-    margin: 0 auto; /* Center the grid within the available space */
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.user-listings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-}
-
-
-
-.listing-item {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    padding: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.listing-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.listing-item img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-}
-
-.listing-item h4 {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    font-weight: bold;
-    color: #333;
-}
-
-.listing-item p {
-    font-size: 0.9rem;
-    color: #555;
-}
-/* Red Rectangle Background with Image */
-.red-rectangle {
-    background-image: url('https://png.pngtree.com/background/20230304/original/pngtree-abstract-red-banner-with-gold-background-vector-picture-image_2083487.jpg'); /* Replace with your image URL */
-    background-size: cover; /* Ensure the image covers the entire area */
-    background-position: center; /* Center the image */
-    height: 200px; /* Adjust the height as needed */
-    width: 100%; /* Full-width */
-    position: relative; /* To enable overlapping */
-    z-index: -1; /* Background layer */
-}
-
-@media (max-width: 768px) {
-    .listing-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-        width: 80%; /* Adjust the grid width for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .listing-grid {
-        grid-template-columns: 1fr; /* 1 column for mobile devices */
-        width: 90%; /* Adjust the grid width for very small screens */
-    }
-}
-
-
-
-
-
-/* Footer Styling */
-footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding-top: 1rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top: auto;
-}
 /* General Body Styling */
 body {
     font-family: Arial, sans-serif;
@@ -174,6 +8,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
 
 /* Header Styling */
 header {
@@ -188,10 +23,12 @@ header {
     align-items: center;
 }
 
+
 header h1 {
     margin: 0;
     font-size: 1.5rem;
 }
+
 
 nav ul {
     list-style: none;
@@ -201,11 +38,13 @@ nav ul {
     gap: 1rem;
 }
 
+
 nav ul li {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
+
 
 nav ul li a {
     font-size: 1rem;
@@ -217,40 +56,157 @@ nav ul li a {
     transition: background-color 0.3s;
 }
 
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
 
-/* Lottie Button Styling */
-.lottie-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: inline-flex;
+
+/* Profile Header Styling */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    width: 2em;
-    height: auto;
+    padding: 1rem 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 90%;
+    margin-top: -50px;
+    position: relative;
 }
 
-.lottie-button:hover {
-    background: transparent;
+
+/* Profile Picture */
+.profile-picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
 }
 
-.lottie-button dotlottie-player {
+
+/* Profile Details */
+.profile-details h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.profile-details p {
+    margin: 0.5rem 0;
+    color: gray;
+    font-size: 1rem;
+}
+
+
+/* Coins Styling */
+#coin-balance {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+
+/* Edit Profile Button */
+.edit-profile-btn {
+    margin-top: 0.5rem;
+    background-color: #E86D2C;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.edit-profile-btn:hover {
+    background-color: #d75b24;
+}
+
+
+/* Listings Section */
+.listing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 60%;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+
+.user-listings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: auto;
-    display: inline-block;
-    transition: transform 0.2s ease;
-    background: transparent !important;
 }
 
-.lottie-button:hover dotlottie-player {
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
+
+.listing-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
+
+
+.listing-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.listing-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+
+.listing-item h4 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.listing-item p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+
+/* Background Banner */
+.red-rectangle {
+    background-image: url('https://png.pngtree.com/background/20230304/original/pngtree-abstract-red-banner-with-gold-background-vector-picture-image_2083487.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    position: relative;
+    z-index: -1;
+}
+
 
 /* Footer Styling */
 footer {
@@ -261,3 +217,53 @@ footer {
     margin-top: auto;
     width: 100%;
 }
+
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+
+    .listing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .profile-header {
+        padding: 0.8rem;
+    }
+
+
+    .listing-grid {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+
+
+    .profile-picture img {
+        width: 80px;
+        height: 80px;
+    }
+
+
+    .edit-profile-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+
+    #coin-balance {
+        font-size: 0.9rem;
+    }
+}
+
+
+

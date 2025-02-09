@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
 }
 
+
 /* Header Styling */
 header {
     position: sticky;
@@ -22,9 +23,11 @@ header {
     align-items: center;
 }
 
+
 header h1 {
     margin: 0;
 }
+
 
 /* Navigation Bar Styling */
 nav ul {
@@ -35,6 +38,7 @@ nav ul {
     gap: 1rem;
 }
 
+
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -44,10 +48,12 @@ nav ul li a {
     transition: background-color 0.3s;
 }
 
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
+
 
 /* Main Content Styling */
 main {
@@ -57,6 +63,7 @@ main {
     align-items: flex-start;
     padding-top: 2rem;
 }
+
 
 .sell-section {
     background-color: white;
@@ -69,17 +76,20 @@ main {
     margin-bottom: 4rem;
 }
 
+
 .sell-section h2 {
     text-align: center;
     margin-bottom: 1rem;
     color: #E86D2C;
 }
 
+
 label {
     display: block;
     margin-top: 1rem;
     font-weight: bold;
 }
+
 
 input[type="text"],
 input[type="number"],
@@ -95,12 +105,14 @@ input[type="url"] {
     font-size: 1rem;
 }
 
+
 /* Input Placeholder Styling */
 input::placeholder,
 textarea::placeholder {
     color: #aaa;
     font-size: 0.9rem;
 }
+
 
 /* Input Focus Styling */
 input:focus,
@@ -109,6 +121,7 @@ textarea:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
+
 
 /* Dropzone Styling */
 .dropzone {
@@ -122,10 +135,12 @@ textarea:focus {
     margin-top: 20px;
 }
 
+
 .dropzone.dragover {
     background-color: #c8e6c9;
     border-color: #4CAF50;
 }
+
 
 button#selectPhotosButton {
     background-color: #4CAF50;
@@ -137,9 +152,11 @@ button#selectPhotosButton {
     font-size: 1rem;
 }
 
+
 button#selectPhotosButton:hover {
     background-color: #45A049;
 }
+
 
 .image-preview {
     display: flex;
@@ -148,11 +165,13 @@ button#selectPhotosButton:hover {
     margin-top: 20px;
 }
 
+
 .image-preview img {
     max-width: 100px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Condition Options Styling */
 .condition-options {
@@ -161,6 +180,7 @@ button#selectPhotosButton:hover {
     gap: 10px;
     margin-top: 0.5rem;
 }
+
 
 .condition-label {
     display: flex;
@@ -177,10 +197,12 @@ button#selectPhotosButton:hover {
     transition: all 0.3s ease-in-out;
 }
 
+
 /* Hide the actual radio input */
 .condition-label input[type="radio"] {
     display: none;
 }
+
 
 /* Styling for the span inside the label */
 .condition-label span {
@@ -191,12 +213,14 @@ button#selectPhotosButton:hover {
     transition: all 0.3s ease-in-out;
 }
 
+
 /* Hover state (button looks filled when hovered) */
 .condition-label:hover {
     border-color: #4CAF50; /* Green border */
     background-color: #e8f5e9; /* Light green background */
     color: #4CAF50; /* Green text */
 }
+
 
 /* Selected state (applies hover-like styling permanently) */
 .condition-label input[type="radio"]:checked + span {
@@ -205,6 +229,10 @@ button#selectPhotosButton:hover {
     border: 2px solid #4CAF50; /* Green border */
     color: #4CAF50; /* Green text */
 }
+
+
+
+
 
 
 
@@ -224,9 +252,11 @@ button[type="submit"] {
     transition: background-color 0.3s;
 }
 
+
 button[type="submit"]:hover {
     background-color: #d55c23;
 }
+
 
 /* Footer Styling */
 footer {
@@ -238,11 +268,13 @@ footer {
     width: 100%;
 }
 
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .sell-section {
         padding: 1rem;
     }
+
 
     input[type="text"],
     input[type="number"],
@@ -253,17 +285,174 @@ footer {
         padding: 0.5rem;
     }
 
+
     .dropzone {
         padding: 15px;
         font-size: 0.9rem;
     }
 
+
     .condition-options {
         flex-direction: column;
     }
+
 
     .condition-label {
         font-size: 0.8rem;
         padding: 0.5rem;
     }
 }
+@media (max-width: 768px) {
+    body {
+        transform: scale(0.9); /* Shrink everything */
+        transform-origin: top;
+    }
+
+
+    header {
+        padding: 0.8rem 3vw;
+    }
+
+
+    header h1 {
+        font-size: 1.2rem; /* Reduce size */
+    }
+
+
+    nav ul {
+        gap: 0.4rem; /* Reduce spacing */
+    }
+
+
+    nav ul li a {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+
+    .lottie-button {
+        width: 1.4em; /* Smaller animation */
+    }
+
+
+    /* Welcome Banner */
+    #welcome-banner {
+        padding: 3vh 4vw;
+    }
+
+
+    .welcome-text h2 {
+        font-size: 1.6rem;
+    }
+
+
+    .welcome-text p {
+        font-size: 0.85rem;
+    }
+
+
+    /* Search Bar */
+    .search-bar {
+        max-width: 95%;
+    }
+
+
+    .search-bar input {
+        font-size: 0.8rem;
+        padding: 0.6em;
+    }
+
+
+    .search-bar button {
+        padding: 0.6em 1.2em;
+        font-size: 0.8rem;
+    }
+
+
+    /* Search Filters */
+    .search-clear-container {
+        flex-direction: column; /* Stack buttons */
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+
+    .condition-buttons {
+        flex-wrap: wrap; /* Allow buttons to fit */
+        justify-content: center;
+    }
+
+
+    .condition-btn {
+        flex: 1 1 45%;
+        max-width: 90px;
+        padding: 0.5em;
+        font-size: 0.8rem;
+    }
+
+
+    /* Search Results & Featured Listings */
+    #search-results, #featured-listings {
+        padding: 3vh 3vw;
+    }
+
+
+    #search-results h2, #featured-listings h2 {
+        font-size: 1.5rem;
+    }
+
+
+    /* Footer */
+    footer {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+
+/* Further Shrink for Very Small Screens */
+@media (max-width: 480px) {
+    body {
+        transform: scale(0.85);
+    }
+
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+
+    nav ul li a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+
+    .search-bar input {
+        font-size: 0.75rem;
+        padding: 0.5em;
+    }
+
+
+    .search-bar button {
+        padding: 0.5em 1em;
+        font-size: 0.75rem;
+    }
+
+
+    .condition-btn {
+        flex: 1 1 40%;
+        max-width: 80px;
+        padding: 0.4em;
+        font-size: 0.7rem;
+    }
+
+
+    footer {
+        padding: 0.6rem;
+        font-size: 0.75rem;
+    }
+}
+
+
+

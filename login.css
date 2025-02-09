@@ -11,6 +11,8 @@ body {
 }
 
 
+
+
 /* Header Styling */
 header {
     position: sticky;
@@ -25,10 +27,14 @@ header {
 }
 
 
+
+
 header h1 {
     margin: 0;
     font-size: 1.8rem;
 }
+
+
 
 
 nav ul {
@@ -39,6 +45,8 @@ nav ul {
     gap: 1rem;
     align-items: center;
 }
+
+
 
 
 nav ul li a {
@@ -53,10 +61,14 @@ nav ul li a {
 }
 
 
+
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
+
+
 
 
 /* Main Styling */
@@ -69,6 +81,8 @@ main {
     padding: 2rem 1rem;
     overflow-x: hidden;
 }
+
+
 
 
 /* Login Form Styling */
@@ -84,6 +98,8 @@ main {
 }
 
 
+
+
 .auth-container h2 {
     margin-bottom: 1.5rem;
     font-size: 2rem;
@@ -91,11 +107,15 @@ main {
 }
 
 
+
+
 /* Input Groups */
 .input-group {
     margin-bottom: 1.5rem;
     text-align: left;
 }
+
+
 
 
 .input-group label {
@@ -106,6 +126,8 @@ main {
 }
 
 
+
+
 .input-group input {
     width: 100%;
     padding: 1rem;
@@ -114,6 +136,8 @@ main {
     font-size: 1rem;
     box-sizing: border-box;
 }
+
+
 
 
 /* Login Button */
@@ -133,9 +157,13 @@ main {
 }
 
 
+
+
 .login-btn:hover {
     background: #E86D2C;
 }
+
+
 
 
 /* Register Link */
@@ -145,15 +173,21 @@ main {
 }
 
 
+
+
 .register-link a {
     color: #E86D2C;
     text-decoration: none;
 }
 
 
+
+
 .register-link a:hover {
     text-decoration: underline;
 }
+
+
 
 
 /* Footer Styling */
@@ -171,6 +205,8 @@ footer {
 }
 
 
+
+
 /* Lottie Animation Styling */
 .lottie-container {
     position: absolute;
@@ -179,9 +215,13 @@ footer {
 }
 
 
+
+
 .lottie-container.left {
     left: calc(50% - 600px);
 }
+
+
 
 
 .lottie-container.right {
@@ -189,10 +229,14 @@ footer {
 }
 
 
+
+
 .lottie-container dotlottie-player {
     width: 250px;
     height: auto;
 }
+
+
 
 
 /* Media Queries for Responsiveness */
@@ -202,9 +246,58 @@ footer {
     }
 
 
+
+
     /* Hide Lottie animations on mobile */
     .lottie-container {
         display: none;
+    }
+}
+
+
+
+
+
+
+/* Hide Hamburger by Default */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+
+/* Show Hamburger Menu on Mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+
+    nav ul {
+        display: none; /* Hide navigation links on mobile */
+    }
+
+
+    nav.active ul {
+        display: flex; /* Show navigation links when active */
+        flex-direction: column;
+        gap: 0.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #E86D2C;
+        padding: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    nav.active ul li a {
+        padding: 0.8rem 1rem;
+        text-align: left;
+        font-size: 1rem;
     }
 }
 

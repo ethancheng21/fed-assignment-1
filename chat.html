@@ -33,7 +33,14 @@
                 <li><a href="#" id="logout-button">Logout</a></li>
             </ul>
         </nav>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
+
+
 
 
     <!-- Chat Layout -->
@@ -69,5 +76,11 @@
             </form>
         </section>        
     </main>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', function () {
+            document.querySelector('nav').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
+

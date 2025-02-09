@@ -11,6 +11,8 @@ body {
 }
 
 
+
+
 /* Header Styling */
 header {
     position: sticky;
@@ -25,10 +27,14 @@ header {
 }
 
 
+
+
 header h1 {
     margin: 0;
     font-size: 1.5rem;
 }
+
+
 
 
 nav ul {
@@ -40,11 +46,15 @@ nav ul {
 }
 
 
+
+
 nav ul li {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
+
+
 
 
 nav ul li a {
@@ -58,10 +68,15 @@ nav ul li a {
 }
 
 
+
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
+
+
+
 
 
 
@@ -71,11 +86,15 @@ nav ul li a:hover {
 }
 
 
+
+
 .chat-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
+
 
 
 .chat-item {
@@ -88,9 +107,13 @@ nav ul li a:hover {
 }
 
 
+
+
 .chat-item:hover {
     background-color: #f0f0f0;
 }
+
+
 
 
 .chat-avatar {
@@ -101,10 +124,18 @@ nav ul li a:hover {
 }
 
 
+
+
 .chat-item.active {
     background-color: #e0e0e0;
     border-left: 4px solid #007bff;
 }
+
+
+
+
+
+
 
 
 
@@ -118,6 +149,7 @@ nav ul li a:hover {
     overflow: hidden;
 }
 
+
 /* Sidebar (Left Chat List) */
 .sidebar {
     width: 15%; /* Reduce the sidebar width */
@@ -128,6 +160,7 @@ nav ul li a:hover {
     overflow-y: auto;
 }
 
+
 /* Main Chat Section */
 .main-chat {
     flex: 1; /* Let the chat section take up the remaining horizontal space */
@@ -137,6 +170,7 @@ nav ul li a:hover {
     height: 100%;
     box-sizing: border-box;
 }
+
 
 /* Messages Area */
 .messages {
@@ -150,6 +184,7 @@ nav ul li a:hover {
     box-sizing: border-box;
 }
 
+
 /* Message Form */
 .message-form {
     flex: 1; /* Smaller proportional height for the input area */
@@ -162,6 +197,7 @@ nav ul li a:hover {
     box-sizing: border-box;
 }
 
+
 .message-form input {
     flex: 1; /* Input takes most of the horizontal space */
     padding: 0.8em;
@@ -169,6 +205,7 @@ nav ul li a:hover {
     border-radius: 4px;
     font-size: 1rem;
 }
+
 
 .message-form button {
     padding: 0.8em 2em;
@@ -181,9 +218,13 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
+
 .message-form button:hover {
     background: #0056b3;
 }
+
+
+
 
 
 
@@ -203,6 +244,7 @@ nav ul li a:hover {
     background: transparent; /* Prevent hover from inheriting the header's background */
 }
 
+
 .lottie-button dotlottie-player {
     width: 100%; /* Matches the parent button width */
     height: auto; /* Maintain aspect ratio */
@@ -212,7 +254,228 @@ nav ul li a:hover {
 }
 
 
+
+
 .lottie-button:hover dotlottie-player {
     transform: scale(1.1); /* Interactive hover scaling */
     transition: transform 0.2s ease;
 }
+/* Responsive Scaling for Mobile */
+@media (max-width: 768px) {
+    /* Scale Chat Layout for Mobile */
+    .chat-container {
+        flex-direction: column;
+        height: calc(100vh - 80px); /* Full height minus header */
+    }
+
+
+    /* Sidebar - Adjust for Mobile */
+    .sidebar {
+        width: 100%; /* Full width on mobile */
+        height: auto;
+        padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+
+    .sidebar h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+
+    /* Chat List - Horizontal Scroll */
+    .chat-list {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+
+    .chat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        flex: 0 0 auto; /* Prevents chat items from stretching */
+    }
+
+
+    .chat-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    /* Main Chat Section */
+    .main-chat {
+        flex: 1;
+        padding: 1rem;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+
+    /* Messages Area - Adjust Size */
+    .messages {
+        flex: 1;
+        max-height: 50vh;
+        overflow-y: auto;
+        font-size: 0.9rem;
+    }
+
+
+    /* Message Input Form */
+    .message-form {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+        border-top: 1px solid #ddd;
+    }
+
+
+    .message-form input {
+        flex: 1;
+        padding: 0.6em;
+        font-size: 0.9rem;
+    }
+
+
+    .message-form button {
+        padding: 0.6em 1.5em;
+        font-size: 0.9rem;
+    }
+        /* ✅ Hide Lottie Animation in Header */
+    .lottie-button {
+        display: none;
+    }
+}
+
+
+/* Further Scaling for Very Small Screens */
+@media (max-width: 480px) {
+    header {
+        padding: 0.8rem 3vw;
+    }
+
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+
+    nav ul li a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+
+    .sidebar h2 {
+        font-size: 1.2rem;
+    }
+
+
+    .chat-item {
+        font-size: 0.8rem;
+    }
+
+
+    .messages {
+        font-size: 0.8rem;
+    }
+
+
+    .message-form input {
+        font-size: 0.85rem;
+        padding: 0.5em;
+    }
+
+
+    .message-form button {
+        padding: 0.5em 1.2em;
+        font-size: 0.85rem;
+    }
+}
+/* ✅ Ensure Hamburger Menu is Visible */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other elements */
+    position: relative;
+}
+
+
+.hamburger span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+
+/* ✅ Hide Lottie in Header on Mobile & Show Hamburger */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+
+    nav ul {
+        display: none; /* Hide default nav */
+    }
+
+
+    /* ✅ Show menu when hamburger is clicked */
+    nav.active ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #E86D2C;
+        padding: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    nav.active ul li {
+        text-align: center;
+    }
+
+
+    nav.active ul li a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        display: block;
+        width: 100%;
+    }
+
+
+    /* ✅ Fix: Properly Hide Lottie Animation */
+    .lottie-button,
+    .lottie-button dotlottie-player {
+        display: none !important; /* Fully hides the Lottie animation */
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+
+
+

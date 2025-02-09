@@ -6,9 +6,10 @@ body {
     background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures full viewport height */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
+
 
 /* Header Styling */
 header {
@@ -17,18 +18,32 @@ header {
     z-index: 10;
     background: linear-gradient(45deg, #E86D2C, #E69631);
     color: white;
-    padding: 1rem 5vw; /* Scalable padding */
+    padding: 1rem 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+    box-sizing: border-box;
 }
+
 
 header h1 {
     margin: 0;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
+
+/* Lottie Integration */
+header h1 dotlottie-player {
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+}
+
+
+/* Navigation Styling */
 nav ul {
     list-style: none;
     margin: 0;
@@ -36,6 +51,13 @@ nav ul {
     display: flex;
     gap: 1rem;
 }
+
+
+nav ul li {
+    display: inline-flex;
+    align-items: center;
+}
+
 
 nav ul li a {
     font-size: 1rem;
@@ -47,24 +69,28 @@ nav ul li a {
     transition: background-color 0.3s;
 }
 
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
 
+
 /* Product Details Section */
 #product-details {
     display: flex;
     flex-direction: column;
-    padding: 3rem 3vw; /* Adjusted padding for smaller screens */
+    align-items: center;
+    padding: 2rem 2vw;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 3vh;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box; /* Prevents padding from causing overflow */
+    margin: 3vh auto;
+    max-width: 600px;
+    width: 90%;
+    box-sizing: border-box;
 }
+
 
 #product-header {
     display: flex;
@@ -73,39 +99,46 @@ nav ul li a:hover {
     align-items: center;
 }
 
+
 #product-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #333;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
+
 #product-info {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
+    align-items: center;
     width: 100%;
 }
+
 
 .chat-button {
     background-color: #E86D2C;
     color: white;
-    padding: 0.8rem 2rem;
+    padding: 0.6rem 1.2rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    align-self: flex-start;
+    align-self: center;
+    transition: background-color 0.3s ease;
 }
+
 
 .chat-button:hover {
     background-color: #D97A25;
 }
 
+
 .product-image {
-    width: 400px;
-    height: 400px;
-    margin-bottom: 1.5rem;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 1rem;
     border-radius: 8px;
     overflow: hidden;
     background-color: #ddd;
@@ -114,29 +147,37 @@ nav ul li a:hover {
     align-items: center;
 }
 
+
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+
 .product-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
 }
 
+
 .product-description div {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
+
 
 .product-description strong {
     font-weight: bold;
-    color: #333;
+    color: #444;
 }
 
+
 .product-description p {
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     color: #666;
 }
+
 
 /* Footer Styling */
 footer {
@@ -145,27 +186,67 @@ footer {
     text-align: center;
     padding: 1rem;
     margin-top: auto;
-    box-sizing: border-box;
+    font-size: 0.9rem;
 }
+
+
+footer a {
+    color: #E69631;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+
+footer a:hover {
+    color: #f8f9fa;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* Adjust the product details layout for smaller screens */
-    #product-details {
-        padding: 2rem 5vw;
+    header {
+        padding: 0.8rem 4vw;
     }
+
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+
+    header h1 dotlottie-player {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+
+    nav ul {
+        gap: 0.8rem;
+    }
+
+
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+
+
+    #product-details {
+        padding: 1.5rem 3vw;
+    }
+
 
     .product-image {
-        width: 100%;
-        height: 300px;
+        width: 200px;
+        height: 200px;
     }
 
-    .product-description {
-        max-width: 100%;
-    }
 
     .chat-button {
         width: 100%;
-        padding: 1rem;
+        padding: 0.8rem;
     }
 }
+
+
+
