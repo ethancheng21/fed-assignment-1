@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("logout-button");
     const API_URL = "https://mokesell-ec88.restdb.io/rest/userss";
-    const API_KEY = "679628de0acc0620a20d364d"; // Replace this with your RESTDB API key
+    const API_KEY = "679628de0acc0620a20d364d";
 
     // Function to generate a UUID
     function generateUUID() {
@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 picture: "https://via.placeholder.com/150", // Default profile picture
                 rating: "N/A",
                 reviews: "No reviews yet",
-                joined: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+                joined: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+                coins: 100 // Default coins for a new user
             };
 
             try {
