@@ -11,8 +11,6 @@ body {
 }
 
 
-
-
 /* Header Styling */
 header {
     position: sticky;
@@ -27,14 +25,10 @@ header {
 }
 
 
-
-
 header h1 {
     margin: 0;
     font-size: 1.5rem;
 }
-
-
 
 
 nav ul {
@@ -46,15 +40,11 @@ nav ul {
 }
 
 
-
-
 nav ul li {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
-
-
 
 
 nav ul li a {
@@ -68,15 +58,10 @@ nav ul li a {
 }
 
 
-
-
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
-
-
-
 
 
 
@@ -86,15 +71,11 @@ nav ul li a:hover {
 }
 
 
-
-
 .chat-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
-
 
 
 .chat-item {
@@ -107,13 +88,9 @@ nav ul li a:hover {
 }
 
 
-
-
 .chat-item:hover {
     background-color: #f0f0f0;
 }
-
-
 
 
 .chat-avatar {
@@ -124,18 +101,10 @@ nav ul li a:hover {
 }
 
 
-
-
 .chat-item.active {
     background-color: #e0e0e0;
     border-left: 4px solid #007bff;
 }
-
-
-
-
-
-
 
 
 
@@ -149,7 +118,6 @@ nav ul li a:hover {
     overflow: hidden;
 }
 
-
 /* Sidebar (Left Chat List) */
 .sidebar {
     width: 15%; /* Reduce the sidebar width */
@@ -160,7 +128,6 @@ nav ul li a:hover {
     overflow-y: auto;
 }
 
-
 /* Main Chat Section */
 .main-chat {
     flex: 1; /* Let the chat section take up the remaining horizontal space */
@@ -170,7 +137,6 @@ nav ul li a:hover {
     height: 100%;
     box-sizing: border-box;
 }
-
 
 /* Messages Area */
 .messages {
@@ -184,7 +150,6 @@ nav ul li a:hover {
     box-sizing: border-box;
 }
 
-
 /* Message Form */
 .message-form {
     flex: 1; /* Smaller proportional height for the input area */
@@ -197,7 +162,6 @@ nav ul li a:hover {
     box-sizing: border-box;
 }
 
-
 .message-form input {
     flex: 1; /* Input takes most of the horizontal space */
     padding: 0.8em;
@@ -205,7 +169,6 @@ nav ul li a:hover {
     border-radius: 4px;
     font-size: 1rem;
 }
-
 
 .message-form button {
     padding: 0.8em 2em;
@@ -218,13 +181,9 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
-
 .message-form button:hover {
     background: #0056b3;
 }
-
-
-
 
 
 
@@ -244,7 +203,6 @@ nav ul li a:hover {
     background: transparent; /* Prevent hover from inheriting the header's background */
 }
 
-
 .lottie-button dotlottie-player {
     width: 100%; /* Matches the parent button width */
     height: auto; /* Maintain aspect ratio */
@@ -254,12 +212,7 @@ nav ul li a:hover {
 }
 
 
-
-
 .lottie-button:hover dotlottie-player {
     transform: scale(1.1); /* Interactive hover scaling */
     transition: transform 0.2s ease;
 }
-
-
-

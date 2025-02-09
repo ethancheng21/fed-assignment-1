@@ -1,151 +1,66 @@
-
-// ✅ Function to log in the user
-async function loginUser(event) {
-    event.preventDefault();
-    console.log("Login function triggered");
-
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    console.log("Entered Email:", email);
-    console.log("Entered Password:", password);
-
-    if (!email || !password) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    try {
-        const response = await fetch(`${API_URL}/users?email=${email}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        });
-        
-
-
-        console.log("API Response Status:", response.status);
-
-        if (!response.ok) {
-            throw new Error(`Login failed: ${response.statusText}`);
-        }
-
-        const users = await response.json();
-        console.log("Fetched Users:", users);
-
-        if (users.length === 0) {
-            alert("No user found with this email.");
-            return;
-        }
-
-        const user = users[0];
-        console.log("Matched User:", user);
-
-        // ✅ Ensure that password checking is correct
-        if (password === user.password) {
-            console.log("Login Successful. Storing user in localStorage...");
-
-            // ✅ Store user info properly
-            const userDataToStore = {
-                id: user.id,
-                username: user.username,
-                email: user.email,
-                chats: user.chats || {} // Ensure chats exist
-            };
-
-            localStorage.setItem("user", JSON.stringify(userDataToStore));
-            console.log("User Stored in Local Storage:", JSON.parse(localStorage.getItem("user")));
-            
-            window.location.href = "profile.html"; // Redirect to profile page
-        } else {
-            alert("Invalid password. Please try again.");
-        }
-    } catch (error) {
-        console.error("Login Error:", error.message);
-        alert("Login Error: " + error.message);
-    }
-}
-
-// ✅ Attach the login function to the login form
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("login-form");
+    const logoutButton = document.getElementById("logout-button");
+
     if (loginForm) {
-        loginForm.addEventListener("submit", loginUser);
-    }
+        loginForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
 
-    const logoutButton = document.getElementById("logout-button");
-    if (logoutButton) {
-        console.log("Logout button found!");
-        logoutButton.addEventListener("click", logoutUser);
-    } else {
-        console.error("Logout button not found.");
-    }
-});
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
 
-// ✅ Function to register a new user
-async function registerUser(event) {
-    event.preventDefault(); // Stop form submission
+            try {
+                const response = await fetch("db.json");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user data.");
+                }
 
-    const usernameInput = document.getElementById("username");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
+                const data = await response.json();
+                const users = data.users;
 
-    const username = usernameInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
+                // Find user by email
+                const user = users.find(user => user.email === email);
+                if (!user) {
+                    alert("User not found. Please check your email or register.");
+                    return;
+                }
 
-    if (!username || !email || !password) {
-        alert("Please fill in all fields.");
-        return;
-    }
+                // Validate password (plaintext check for now; should use bcrypt for security)
+                if (user.password !== password) {
+                    alert("Incorrect password. Please try again.");
+                    return;
+                }
 
-    try {
-        const userData = {
-            username: username,
-            email: email,
-            password: password, // No hashing for localhost testing
-            chats: {} // ✅ Ensure new users start with an empty chat log
-        };
+                // Store user session in localStorage
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
+                // Redirect to homepage after successful login
+                alert(`Welcome, ${user.username}!`);
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Error logging in:", error);
+                alert("An error occurred while logging in. Please try again later.");
+            }
         });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Registration failed: ${response.statusText}\n${errorText}`);
-        }
-
-        alert("Account successfully created. Redirecting to login...");
-        window.location.href = "login.html"; // Redirect to login page
-    } catch (error) {
-        console.error("Registration Error:", error.message);
-        alert("Registration Error: " + error.message);
     }
-}
 
-// ✅ Function to log out the user
-function logoutUser(event) {
-    event.preventDefault(); // Prevent default link behavior
-    console.log("Logout button clicked");
-
-    // ✅ Remove user from storage properly
-    localStorage.removeItem("user");
-
-    console.log("User removed from localStorage");
-
-    // Redirect to login page
-    window.location.href = "login.html";
-}
-
-// ✅ Attach logout function to the logout button
-document.addEventListener("DOMContentLoaded", () => {
-    const logoutButton = document.getElementById("logout-button");
+    // Logout functionality - Clears localStorage and redirects to login
     if (logoutButton) {
-        logoutButton.addEventListener("click", logoutUser);
+        logoutButton.addEventListener("click", () => {
+            localStorage.clear(); // Clears all stored user data
+            alert("You have been logged out.");
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    }
+
+    // Check if user is logged in and update UI
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user) {
+        document.getElementById("user-info").textContent = `Logged in as: ${user.username}`;
+        document.getElementById("logout-container").style.display = "block"; // Show logout button
+    } else {
+        document.getElementById("logout-container").style.display = "none"; // Hide logout button
     }
 });
+
+
