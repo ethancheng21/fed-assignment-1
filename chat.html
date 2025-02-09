@@ -6,6 +6,7 @@
     <title>MokeSell Chat</title>
     <link rel="stylesheet" href="chat.css">
     <script src="chat.js" defer></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
     <!-- Header -->
@@ -13,17 +14,27 @@
         <h1>MokeSell</h1>
         <nav>
             <ul>
+                <li>
+                    <a href="gamespage.html" class="lottie-button">
+                        <dotlottie-player
+                            src="https://lottie.host/fd30fb9f-a07f-4254-9821-186c239af1db/BaV9LaSJyv.lottie"
+                            background="transparent"
+                            speed="1"
+                            direction="1"
+                            hover>
+                        </dotlottie-player>
+                    </a>
+                </li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="search.html">Search</a></li>
                 <li><a href="chat.html">Chat</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="sell.html" id="sell-button" class="sell-nav-button">Sell</a></li>
                 <li><a href="#" id="logout-button">Logout</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="sell.html">Sell</a></li>
             </ul>
         </nav>
     </header>
+
 
     <!-- Chat Layout -->
     <main class="chat-container">
@@ -44,26 +55,19 @@
                         <p>Last message...</p>
                     </div>
                 </li>
-                <li class="chat-item">
-                    <div class="chat-avatar"></div>
-                    <div>
-                        <strong>User 3</strong>
-                        <p>Last message...</p>
-                    </div>
-                </li>
             </ul>
         </aside>
-
         <section class="main-chat">
-            <h2>Select a Chat</h2>
+            <h2 id="chat-title">Select a Chat</h2>
             <div class="messages">
-                <p>Welcome to the MokeSell chat system!</p>
+                <p><strong>User 1:</strong> Hello!</p>
+                <p><strong>You:</strong> Hi there!</p>
             </div>
             <form class="message-form">
-                <input type="text" placeholder="Type a message...">
-                <button type="submit">Send</button>
+                <input type="text" placeholder="Type a message..." class="message-input">
+                <button type="submit" class="send-button">Send</button>
             </form>
-        </section>
+        </section>        
     </main>
 </body>
 </html>

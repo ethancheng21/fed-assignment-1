@@ -5,8 +5,11 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     height: 100vh;
-    overflow: hidden; /* Prevents page scrolling */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
+
 
 /* Header Styling */
 header {
@@ -21,10 +24,12 @@ header {
     align-items: center;
 }
 
+
 header h1 {
     margin: 0;
     font-size: 1.5rem;
 }
+
 
 nav ul {
     list-style: none;
@@ -34,11 +39,13 @@ nav ul {
     gap: 1rem;
 }
 
+
 nav ul li {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
+
 
 nav ul li a {
     font-size: 1rem;
@@ -50,54 +57,37 @@ nav ul li a {
     transition: background-color 0.3s;
 }
 
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
 
-/* Lottie Button Styling */
-.lottie-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2em;
-    height: auto;
-}
-
-.lottie-button dotlottie-player {
-    width: 100%;
-    height: auto;
-    transition: transform 0.2s ease;
-}
-
-.lottie-button:hover dotlottie-player {
-    transform: scale(1.1);
-}
 
 /* Chat Layout Styling */
 .chat-container {
     display: flex;
-    height: calc(100vh - 80px); /* Adjusting for header height */
-    overflow: hidden; /* Prevents scrolling the entire container */
+    height: calc(100vh - 80px);
+    overflow: hidden;
 }
 
+
+/* Sidebar (Left Chat List) */
 .sidebar {
     width: 25%;
     background: #ffffff;
     border-right: 1px solid #ddd;
     padding: 1rem;
     height: 100%;
-    overflow-y: auto; /* Sidebar scrollable */
+    overflow-y: auto;
 }
+
 
 .sidebar h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
+
 
 .chat-list {
     list-style: none;
@@ -105,12 +95,21 @@ nav ul li a:hover {
     margin: 0;
 }
 
+
 .chat-item {
     display: flex;
     gap: 1rem;
     padding: 0.5rem 0;
     border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.3s;
 }
+
+
+.chat-item:hover {
+    background-color: #f0f0f0;
+}
+
 
 .chat-avatar {
     width: 40px;
@@ -119,54 +118,54 @@ nav ul li a:hover {
     background-color: #ddd;
 }
 
-.chat-item strong {
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
-    display: block;
+
+.chat-item.active {
+    background-color: #e0e0e0;
+    border-left: 4px solid #007bff;
 }
 
-.chat-item p {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0;
-}
 
+/* Main Chat Section */
 .main-chat {
-    flex: 1;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden; /* Prevents scroll bleed */
+    flex-direction: column; /* Stack messages and form vertically */
+    height: 100%; /* Take full height of the parent container */
     padding: 1rem;
+    box-sizing: border-box;
 }
 
-.main-chat h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
 
 .messages {
-    flex: 1;
+    flex: 1; /* Allow this container to grow and take available space */
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
-    overflow-y: auto; /* Makes the messages section scrollable */
+    overflow-y: auto; /* Enable scrolling for overflow messages */
     margin-bottom: 1rem;
+    max-height: calc(100vh - 200px); /* Prevent it from growing too large */
 }
+
 
 .message-form {
     display: flex;
     gap: 0.5rem;
+    align-items: center; /* Align input and button */
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-top: 1px solid #ddd; /* Add a separator line */
+    box-sizing: border-box;
 }
 
+
 .message-form input {
-    flex: 1;
+    flex: 1; /* Input takes the remaining space */
     padding: 0.8em;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
 }
+
 
 .message-form button {
     padding: 0.8em 2em;
@@ -179,10 +178,9 @@ nav ul li a:hover {
     transition: background-color 0.3s;
 }
 
+
 .message-form button:hover {
     background: #0056b3;
 }
-.chat-item.active {
-    background-color: #f0f0f0;
-    border-left: 4px solid #007bff;
-}
+
+
