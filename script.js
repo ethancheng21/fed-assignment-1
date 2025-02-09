@@ -2,17 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
     const API_KEY = "679628de0acc0620a20d364d";
 
-    // Delay the setup of event listeners to ensure the DOM is fully loaded
     setTimeout(() => {
         const searchBar = document.getElementById("searchBar");
         const searchBtn = document.getElementById("search-btn");
         const listingsContainer = document.getElementById("featured-listings-container");
 
-        // Get the condition buttons and the clear filter button
         const conditionButtons = document.querySelectorAll(".condition-btn");
         const clearFilterBtn = document.getElementById("clear-filters");
 
-        let selectedCondition = ""; // Initialize selected condition as empty string
+        let selectedCondition = "";
 
         if (!searchBar || !searchBtn || !listingsContainer || !clearFilterBtn) {
             console.error("Required elements not found!");
@@ -21,23 +19,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Search Button Click Event
         searchBtn.addEventListener("click", function () {
-            const query = searchBar.value.toLowerCase();
+            const query = searchBar.value.trim().toLowerCase();
+            if (!query) {
+                alert("Please enter a search term.");
+                return;
+            }
             fetchListings(query, selectedCondition);
         });
 
-        // Condition Button Click Event (Filter by condition)
+        // Condition Button Click Event
         conditionButtons.forEach((button) => {
             button.addEventListener("click", function () {
-                selectedCondition = this.innerText; // Set selected condition based on clicked button
+                selectedCondition = this.innerText; // Filter based on condition
                 highlightSelectedCondition(button);
             });
         });
 
         // Clear Filters Button Click Event
         clearFilterBtn.addEventListener("click", function () {
-            selectedCondition = ""; // Reset condition filter to default
-            conditionButtons.forEach((button) => button.classList.remove("selected")); // Remove all selected condition styles
-            fetchListings(searchBar.value.toLowerCase(), ""); // Re-fetch listings without filters
+            selectedCondition = ""; // Reset condition filter
+            conditionButtons.forEach((button) => button.classList.remove("selected")); // Clear selected condition
+            fetchListings(searchBar.value.trim().toLowerCase(), ""); // Fetch listings again without condition
         });
 
         // Initial fetch for featured listings
@@ -51,7 +53,7 @@ async function fetchListings(query, selectedCondition) {
     const API_KEY = "679628de0acc0620a20d364d";
 
     try {
-        const response = await fetch(`${API_URL}`, {
+        const response = await fetch(API_URL, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -61,10 +63,11 @@ async function fetchListings(query, selectedCondition) {
 
         const listings = await response.json();
 
-        // Filter the listings by matching the title with the query and condition
+        console.log("Fetched Listings:", listings); // Debugging log
+
         const filteredListings = listings.filter((item) => {
             const matchesQuery = query
-                ? item.title.toLowerCase().includes(query.toLowerCase())
+                ? item.title.toLowerCase().includes(query)
                 : true;
             const matchesCondition = selectedCondition
                 ? item.condition.toLowerCase() === selectedCondition.toLowerCase()
@@ -72,6 +75,8 @@ async function fetchListings(query, selectedCondition) {
 
             return matchesQuery && matchesCondition;
         });
+
+        console.log("Filtered Listings:", filteredListings); // Debugging log
 
         displaySearchResults(filteredListings);
     } catch (error) {
@@ -132,9 +137,7 @@ async function fetchFeaturedListings(API_URL, API_KEY) {
         });
 
         const listings = await response.json();
-        const listingsContainer = document.querySelector(
-            "#featured-listings-container"
-        );
+        const listingsContainer = document.querySelector("#featured-listings-container");
 
         if (!listingsContainer) {
             console.error("Error: Listings container not found.");
@@ -142,8 +145,7 @@ async function fetchFeaturedListings(API_URL, API_KEY) {
         }
 
         if (!listings || listings.length === 0) {
-            listingsContainer.innerHTML =
-                "<p>No featured listings available.</p>";
+            listingsContainer.innerHTML = "<p>No featured listings available.</p>";
             return;
         }
 
