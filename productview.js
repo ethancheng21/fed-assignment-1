@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
-    const API_KEY = "67a89ea999fb60036de983c8";
+    const API_URL = "https://mokesell-5205.restdb.io/rest/listing";
+    const API_KEY = "67a8a93399fb60857de983d6";
 
     // Get product ID from the URL
     const urlParams = new URLSearchParams(window.location.search);

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
-    const API_KEY = "67a89ea999fb60036de983c8";
+    const API_URL = "https://mokesell-5205.restdb.io/rest/listing";
+    const API_KEY = "67a8a93399fb60857de983d6";
 
     setTimeout(() => {
         const searchBar = document.getElementById("searchBar");
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fetch Listings Based on Search Query and Condition
 async function fetchListings(query, selectedCondition) {
-    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
-    const API_KEY = "67a89ea999fb60036de983c8";
+    const API_URL = "https://mokesell-5205.restdb.io/rest/listing";
+    const API_KEY = "67a8a93399fb60857de983d6";
 
     try {
         const response = await fetch(API_URL, {
