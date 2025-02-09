@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
-    const API_KEY = "679628de0acc0620a20d364d";
+    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
+    const API_KEY = "67a89ea999fb60036de983c8";
 
     // Get product ID from the URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -52,13 +52,6 @@ function displayProductDetails(product) {
     conditionElement.textContent = `Condition: ${product.condition || "Unknown"}`;
     imageElement.src = product.image || "https://via.placeholder.com/150";
     imageElement.alt = product.title || "No image available";
-
-    // Display seller's username
-    const sellerElement = document.createElement("p");
-    sellerElement.textContent = `Seller: ${product.username || "Unknown"}`;
-    sellerElement.style.fontWeight = "bold";
-    sellerElement.style.marginTop = "10px";
-    document.querySelector(".product-image").appendChild(sellerElement);
 
     // Set up chat button to start a chat with the seller
     chatButton.addEventListener("click", () => {

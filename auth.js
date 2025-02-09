@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerForm = document.getElementById("register-form");
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("logout-button");
-    const API_URL = "https://mokesell-ec88.restdb.io/rest/userss";
-    const API_KEY = "679628de0acc0620a20d364d";
+    const API_URL = "https://mokesell-0044.restdb.io/rest/userss";
+    const API_KEY = "67a89ea999fb60036de983c8";
 
     // Function to generate a UUID
     function generateUUID() {

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL_LISTING = "https://mokesell-ec88.restdb.io/rest/listing";
-    const API_KEY = "679628de0acc0620a20d364d";
+    const API_URL_LISTING = "https://mokesell-0044.restdb.io/rest/listing";
+    const API_KEY = "67a89ea999fb60036de983c8";
 
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!loggedInUser) {

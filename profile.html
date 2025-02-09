@@ -37,32 +37,32 @@
     <!-- Background Image -->
     <div class="red-rectangle"></div>
 
-    <!-- Profile Container -->
+    <!-- Profile Header -->
     <div class="profile-header" style="display: flex; justify-content: space-between; align-items: center;">
         <div style="display: flex; align-items: center; gap: 1rem;">
             <div class="profile-picture">
-                <img id="profile-picture" src="" alt="Profile Icon" style="border-radius: 50%; border: 2px solid #ddd;">
+                <img id="profile-picture" src="default-profile.png" alt="Profile Icon" style="border-radius: 50%; border: 2px solid #ddd;">
             </div>
             <div class="profile-details">
-                <h2 id="profile-name">testuser1</h2>
-                <p id="profile-details">Email: testuser1@example.com</p>
+                <h2 id="profile-name">Loading...</h2>
+                <p id="profile-details">Email: Loading...</p>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
-            <div id="profile-rating"><strong>5.0</strong> ★</div>
-            <div id="profile-reviews">12 reviews</div>
-            <div id="profile-joined">2y 5m Joined</div>
+            <div id="profile-rating"><strong>Loading...</strong> ★</div>
+            <div id="profile-reviews">Loading reviews</div>
+            <div id="profile-joined">Joined: Loading...</div>
         </div>
-        <button class="edit-profile-btn">Edit Profile</button>
-
-        
+        <!-- Edit Profile Button -->
+        <button id="edit-profile-button" class="edit-profile-btn" onclick="editProfile()" style="padding: 0.5rem 1rem; font-size: 1rem; background-color: teal; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Edit Profile
+        </button>
     </div>
-    
-    <!-- Coin Counter -->
-<div class="coin-counter">
-    <p><strong>Coins:</strong> <span id="coin-balance">0</span></p>
-</div>
 
+    <!-- Coin Counter -->
+    <div class="coin-counter">
+        <p><strong>Coins:</strong> <span id="coin-balance">0</span></p>
+    </div>
 
     <!-- Listings Section -->
     <main>
@@ -79,9 +79,17 @@
         <p>&copy; 2025 MokeSell. All Rights Reserved.</p>
     </footer>
     
+    <!-- Scripts -->
     <script src="config.js" defer></script>
     <script src="auth.js" defer></script>
     <script src="profile.js" defer></script>
-    
+
+    <!-- Add editProfile function -->
+    <script>
+        function editProfile() {
+            alert('Edit Profile button clicked! Redirecting...');
+            // Add logic for redirecting or displaying edit profile form
+        }
+    </script>
 </body>
 </html>

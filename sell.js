@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("fileInput");
     const selectPhotosButton = document.getElementById("selectPhotosButton");
     const imagePreview = document.getElementById("imagePreview");
-    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
-    const API_KEY = "679628de0acc0620a20d364d";
+    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
+    const API_KEY = "67a89ea999fb60036de983c8";
 
     // Open file explorer when "Select photos" is clicked
     selectPhotosButton.addEventListener("click", () => {

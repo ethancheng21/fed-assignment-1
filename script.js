@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
-    const API_KEY = "679628de0acc0620a20d364d";
+    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
+    const API_KEY = "67a89ea999fb60036de983c8";
 
     setTimeout(() => {
         const searchBar = document.getElementById("searchBar");
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fetch Listings Based on Search Query and Condition
 async function fetchListings(query, selectedCondition) {
-    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
-    const API_KEY = "679628de0acc0620a20d364d";
+    const API_URL = "https://mokesell-0044.restdb.io/rest/listing";
+    const API_KEY = "67a89ea999fb60036de983c8";
 
     try {
         const response = await fetch(API_URL, {
@@ -126,9 +126,11 @@ function highlightSelectedCondition(selected) {
 }
 
 // Fetch Featured Listings
+// Fetch Featured Listings (only those marked as bumped)
+// Fetch Featured Listings (only those marked as bumped)
 async function fetchFeaturedListings(API_URL, API_KEY) {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${API_URL}?q={"bumped":true}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
