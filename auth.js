@@ -19,10 +19,12 @@ async function loginUser(event) {
     }
 
     try {
-        const response = await fetch(`${API_URL}?email=${email}`, {
+        const response = await fetch(`${API_URL}/users?email=${email}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         });
+        
+
 
         console.log("API Response Status:", response.status);
 

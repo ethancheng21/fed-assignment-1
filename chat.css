@@ -11,6 +11,8 @@ body {
 }
 
 
+
+
 /* Header Styling */
 header {
     position: sticky;
@@ -25,10 +27,14 @@ header {
 }
 
 
+
+
 header h1 {
     margin: 0;
     font-size: 1.5rem;
 }
+
+
 
 
 nav ul {
@@ -40,11 +46,15 @@ nav ul {
 }
 
 
+
+
 nav ul li {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
 }
+
+
 
 
 nav ul li a {
@@ -58,29 +68,16 @@ nav ul li a {
 }
 
 
+
+
 nav ul li a:hover {
     background-color: white;
     color: #E86D2C;
 }
 
 
-/* Chat Layout Styling */
-.chat-container {
-    display: flex;
-    height: calc(100vh - 80px);
-    overflow: hidden;
-}
 
 
-/* Sidebar (Left Chat List) */
-.sidebar {
-    width: 25%;
-    background: #ffffff;
-    border-right: 1px solid #ddd;
-    padding: 1rem;
-    height: 100%;
-    overflow-y: auto;
-}
 
 
 .sidebar h2 {
@@ -89,11 +86,15 @@ nav ul li a:hover {
 }
 
 
+
+
 .chat-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
+
 
 
 .chat-item {
@@ -106,9 +107,13 @@ nav ul li a:hover {
 }
 
 
+
+
 .chat-item:hover {
     background-color: #f0f0f0;
 }
+
+
 
 
 .chat-avatar {
@@ -119,47 +124,82 @@ nav ul li a:hover {
 }
 
 
+
+
 .chat-item.active {
     background-color: #e0e0e0;
     border-left: 4px solid #007bff;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+/* Chat Layout Styling */
+.chat-container {
+    display: flex;
+    height: calc(100vh - 80px); /* Full height minus header */
+    overflow: hidden;
+}
+
+
+/* Sidebar (Left Chat List) */
+.sidebar {
+    width: 15%; /* Reduce the sidebar width */
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    padding: 1rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
 /* Main Chat Section */
 .main-chat {
+    flex: 1; /* Let the chat section take up the remaining horizontal space */
     display: flex;
-    flex-direction: column; /* Stack messages and form vertically */
-    height: 100%; /* Take full height of the parent container */
+    flex-direction: column;
     padding: 1rem;
+    height: 100%;
     box-sizing: border-box;
 }
 
 
+/* Messages Area */
 .messages {
-    flex: 1; /* Allow this container to grow and take available space */
+    flex: 8; /* Messages area grows significantly to take up most space */
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
-    overflow-y: auto; /* Enable scrolling for overflow messages */
+    overflow-y: auto;
     margin-bottom: 1rem;
-    max-height: calc(100vh - 200px); /* Prevent it from growing too large */
+    box-sizing: border-box;
 }
 
 
+/* Message Form */
 .message-form {
+    flex: 1; /* Smaller proportional height for the input area */
     display: flex;
     gap: 0.5rem;
-    align-items: center; /* Align input and button */
-    background-color: #f8f9fa;
+    align-items: center;
     padding: 0.5rem;
-    border-top: 1px solid #ddd; /* Add a separator line */
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
     box-sizing: border-box;
 }
 
 
 .message-form input {
-    flex: 1; /* Input takes the remaining space */
+    flex: 1; /* Input takes most of the horizontal space */
     padding: 0.8em;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -182,5 +222,44 @@ nav ul li a:hover {
 .message-form button:hover {
     background: #0056b3;
 }
+
+
+
+
+
+
+/* Lottie Button Styling */
+.lottie-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em; /* Scales based on font size */
+    height: auto; /* Maintain aspect ratio */
+}
+.lottie-button:hover {
+    background: transparent; /* Prevent hover from inheriting the header's background */
+}
+
+
+.lottie-button dotlottie-player {
+    width: 100%; /* Matches the parent button width */
+    height: auto; /* Maintain aspect ratio */
+    display: inline-block;
+    transition: transform 0.2s ease;
+    background: transparent !important; /* Force transparent background */
+}
+
+
+
+
+.lottie-button:hover dotlottie-player {
+    transform: scale(1.1); /* Interactive hover scaling */
+    transition: transform 0.2s ease;
+}
+
 
 
