@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - MokeSell</title>
+    <link rel="stylesheet" href="profile.css">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>MokeSell</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="gamespage.html" class="lottie-button">
+                        <dotlottie-player
+                            src="https://lottie.host/fd30fb9f-a07f-4254-9821-186c239af1db/BaV9LaSJyv.lottie"
+                            background="transparent"
+                            speed="1"
+                            direction="1"
+                            hover>
+                        </dotlottie-player>
+                    </a>
+                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="chat.html">Chat</a></li>
+                <li><a href="sell.html" id="sell-button" class="sell-nav-button">Sell</a></li>
+                <li><a href="#" id="logout-button">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Background Image -->
+    <div class="red-rectangle"></div>
+
+    <!-- Profile Container -->
+    <div class="profile-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="profile-picture">
+                <img id="profile-picture" src="" alt="Profile Icon" style="border-radius: 50%; border: 2px solid #ddd;">
+            </div>
+            <div class="profile-details">
+                <h2 id="profile-name">testuser1</h2>
+                <p id="profile-details">Email: testuser1@example.com</p>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
+            <div id="profile-rating"><strong>5.0</strong> ★</div>
+            <div id="profile-reviews">12 reviews</div>
+            <div id="profile-joined">2y 5m Joined</div>
+        </div>
+        <button class="edit-profile-btn">Edit Profile</button>
+    </div>
+    
+    
+    <!-- Listings Section -->
+    <main>
+        <section class="user-listings">
+            <h3>Your Listings</h3>
+            <div id="user-listings-container" class="listing-grid">
+                <!-- User listings will be dynamically loaded here -->
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MokeSell. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="config.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="profile.js" defer></script>
+    
+</body>
+</html>

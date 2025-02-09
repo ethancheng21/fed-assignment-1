@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MokeSell Chat</title>
+    <link rel="stylesheet" href="chat.css">
+    <script src="chat.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>MokeSell</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="chat.html">Chat</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#" id="logout-button">Logout</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="sell.html">Sell</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Chat Layout -->
+    <main class="chat-container">
+        <aside class="sidebar">
+            <h2>Chats</h2>
+            <ul class="chat-list">
+                <li class="chat-item">
+                    <div class="chat-avatar"></div>
+                    <div>
+                        <strong>User 1</strong>
+                        <p>Last message...</p>
+                    </div>
+                </li>
+                <li class="chat-item">
+                    <div class="chat-avatar"></div>
+                    <div>
+                        <strong>User 2</strong>
+                        <p>Last message...</p>
+                    </div>
+                </li>
+                <li class="chat-item">
+                    <div class="chat-avatar"></div>
+                    <div>
+                        <strong>User 3</strong>
+                        <p>Last message...</p>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <section class="main-chat">
+            <h2>Select a Chat</h2>
+            <div class="messages">
+                <p>Welcome to the MokeSell chat system!</p>
+            </div>
+            <form class="message-form">
+                <input type="text" placeholder="Type a message...">
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
