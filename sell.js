@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("fileInput");
     const selectPhotosButton = document.getElementById("selectPhotosButton");
     const imagePreview = document.getElementById("imagePreview");
+    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
+    const API_KEY = "679628de0acc0620a20d364d";
 
     // Open file explorer when "Select photos" is clicked
     selectPhotosButton.addEventListener("click", () => {
@@ -54,134 +56,58 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.readAsDataURL(file);
         });
     }
-});
 
-// Save or create a new listing
-async function saveListing(listingId) {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-        alert("You must be logged in to sell items.");
-        window.location.href = "login.html";
-        return;
-    }
+    // Add event listener for form submission
+    document.getElementById("add-listing-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const price = document.getElementById("price").value;
-    const condition = document.querySelector('input[name="condition"]:checked')?.value;
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (!user) {
+            alert("You must be logged in to sell items.");
+            window.location.href = "login.html";
+            return;
+        }
 
-    if (!condition) {
-        alert("Please select a condition for the item.");
-        return;
-    }
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const price = parseFloat(document.getElementById("price").value);
+        const condition = document.querySelector('input[name="condition"]:checked')?.value;
 
-    // Handle Image Uploads
-    const imageFile = document.getElementById("fileInput").files[0];
-    let imageUrl = "";
+        if (!condition) {
+            alert("Please select a condition for the item.");
+            return;
+        }
 
-    if (imageFile) {
-        if (USE_LOCAL_API) {
-            // Upload image to localhost backend
-            const formData = new FormData();
-            formData.append("image", imageFile);
+        const imageFile = document.getElementById("fileInput").files[0];
+        let imageUrl = "https://via.placeholder.com/150"; // Default image URL
 
-            const uploadResponse = await fetch("http://localhost:5000/upload", {
-                method: "POST",
-                body: formData,
-            });
-
-            const uploadData = await uploadResponse.json();
-            imageUrl = uploadData.imageUrl; // Get image path from backend
-        } else {
-            // Convert image to Base64 for RestDB.io
+        if (imageFile) {
+            // Convert image to Base64 for RESTDB
             const reader = new FileReader();
             reader.readAsDataURL(imageFile);
             await new Promise((resolve) => (reader.onload = resolve));
             imageUrl = reader.result;
         }
-    }
 
-    // Create the listing object
-    const listing = {
-        title,
-        description,
-        price,
-        image: imageUrl, // Store either local file path or Base64 image
-        condition,
-        username: user.username,
-        email: user.email,
-    };
-
-    try {
-        const endpoint = listingId ? `${API_URL}/${listingId}` : API_URL;
-        const method = listingId ? "PUT" : "POST";
-
-        const response = await fetch(endpoint, {
-            method,
-            headers: USE_LOCAL_API
-                ? { "Content-Type": "application/json" }
-                : { "Content-Type": "application/json", "x-apikey": API_KEY },
-            body: JSON.stringify(listing),
-        });
-
-        if (!response.ok) throw new Error("Failed to save listing.");
-
-        alert("Listing saved successfully!");
-        window.location.href = "profile.html";
-    } catch (error) {
-        console.error("Error saving listing:", error);
-        alert("Error saving listing. Please try again.");
-    }
-}
-document.getElementById("add-listing-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-        alert("You must be logged in to sell items.");
-        window.location.href = "login.html";
-        return;
-    }
-
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const price = document.getElementById("price").value;
-    
-    // Get selected condition
-    const condition = document.querySelector('input[name="condition"]:checked')?.value; // Capture selected condition
-
-    // Check if a condition is selected
-    if (!condition) {
-        alert("Please select a condition for the item.");
-        return;
-    }
-
-    const imageFile = document.getElementById("fileInput").files[0];
-
-    if (!imageFile) {
-        alert("Please upload an image.");
-        return;
-    }
-
-    // Convert image to Base64
-    const reader = new FileReader();
-    reader.readAsDataURL(imageFile);
-    reader.onload = async function () {
-        const imageBase64 = reader.result;
+        // Create the listing object
+        const listing = {
+            title,
+            description,
+            price,
+            image: imageUrl, // Base64 image
+            condition,
+            username: user.username,
+            email: user.email,
+        };
 
         try {
-            const response = await fetch("http://localhost:5000/listing", {
+            const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "x-apikey": API_KEY
                 },
-                body: JSON.stringify({
-                    title,
-                    description,
-                    price,
-                    condition, // Include the condition here
-                    image: imageBase64,
-                })
+                body: JSON.stringify(listing)
             });
 
             if (!response.ok) {
@@ -189,10 +115,10 @@ document.getElementById("add-listing-form").addEventListener("submit", async (ev
             }
 
             alert("Listing successfully added!");
-            window.location.href = "index.html"; // Redirect to homepage after saving
+            window.location.href = "profile.html"; // Redirect to profile page after saving
         } catch (error) {
             console.error("Error adding listing:", error);
-            alert("Error adding listing.");
+            alert("Error adding listing. Please try again.");
         }
-    };
+    });
 });

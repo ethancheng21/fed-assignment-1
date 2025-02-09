@@ -25,20 +25,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to Update Profile UI
 function updateProfileUI(user) {
-    document.getElementById("profile-picture").src = user.profile.picture || "https://via.placeholder.com/150";
+    // Use the placeholder image if the user.picture is missing or invalid
+    const profilePicture = user.picture && user.picture !== "https://via.placeholder.com/150" 
+        ? user.picture 
+        : "https://via.placeholder.com/150";
+
+    document.getElementById("profile-picture").src = profilePicture;
     document.getElementById("profile-name").textContent = user.username;
     document.getElementById("profile-details").textContent = `Email: ${user.email}`;
-    document.getElementById("profile-rating").innerHTML = `<strong>${user.profile.rating}</strong> ★`;
-    document.getElementById("profile-reviews").textContent = user.profile.reviews;
-    document.getElementById("profile-joined").textContent = `${user.profile.joined} Joined`;
+    document.getElementById("profile-rating").innerHTML = `<strong>${user.rating || "N/A"}</strong> ★`;
+    document.getElementById("profile-reviews").textContent = user.reviews || "No reviews yet";
+    document.getElementById("profile-joined").textContent = `${user.joined || "Unknown"} Joined`;
 }
 
 // Function to Load User Listings
 function loadUserListings(userEmail) {
-    fetch("db.json")
-        .then(response => response.json())
-        .then(data => {
-            const listings = data.listing.filter(item => item.email === userEmail);
+    const API_URL = "https://mokesell-ec88.restdb.io/rest/listing";
+    const API_KEY = "679628de0acc0620a20d364d";
+
+    // Fetch listings belonging to the logged-in user
+    fetch(`${API_URL}?q={"email":"${userEmail}"}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-apikey": API_KEY
+        }
+    })
+        .then(response => {
+            if (!response.ok) throw new Error("Failed to fetch listings.");
+            return response.json();
+        })
+        .then(listings => {
             const listingsContainer = document.getElementById("user-listings-container");
 
             if (listings.length === 0) {
@@ -52,7 +69,7 @@ function loadUserListings(userEmail) {
                     <h4>${listing.title}</h4>
                     <p>${listing.condition}</p>
                     <p>Price: $${listing.price}</p>
-                    <button onclick="deleteListing('${listing.id}')">Delete</button>
+                    <button onclick="deleteListing('${listing._id}')">Delete</button>
                 </div>
             `).join("");
         })
@@ -61,6 +78,7 @@ function loadUserListings(userEmail) {
             alert("Failed to load your listings. Please try again later.");
         });
 }
+
 
 // Function to Delete a Listing
 function deleteListing(listingId) {

@@ -5,6 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const API_URL = "https://mokesell-ec88.restdb.io/rest/userss";
     const API_KEY = "679628de0acc0620a20d364d"; // Replace this with your RESTDB API key
 
+    // Function to generate a UUID
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = (Math.random() * 16) | 0,
+                v = c === 'x' ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+        });
+    }
+
     // Registration Functionality
     if (registerForm) {
         registerForm.addEventListener("submit", async (event) => {
@@ -15,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("password").value;
 
             const userData = {
+                id: generateUUID(), // Generate a unique ID for the user
                 username,
                 email,
                 password,
