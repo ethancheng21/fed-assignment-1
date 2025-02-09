@@ -23,16 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
+            if (!username || !email || !password) {
+                alert("All fields are required!");
+                return;
+            }
+
             const userData = {
-                id: generateUUID(), // Generate a unique ID for the user
+                id: generateUUID(), 
                 username,
                 email,
-                password,
-                picture: "https://via.placeholder.com/150", // Default profile picture
+                password, 
+                picture: "https://via.placeholder.com/150",
                 rating: "N/A",
                 reviews: "No reviews yet",
                 joined: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
-                coins: 100 // Default coins for a new user
+                coins: 100 
             };
 
             try {
@@ -46,12 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || "Failed to register user.");
+                    throw new Error("Failed to register user.");
                 }
 
                 alert("Account created successfully! You can now log in.");
-                window.location.href = "login.html"; // Redirect to login page
+                window.location.href = "login.html";
             } catch (error) {
                 console.error("Error registering user:", error);
                 alert("An error occurred while creating your account. Please try again.");
@@ -64,8 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
         loginForm.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            if (!email || !password) {
+                alert("Please fill in both fields.");
+                return;
+            }
 
             try {
                 const response = await fetch(API_URL, {
@@ -81,8 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 const users = await response.json();
-                const user = users.find(user => user.email === email);
+                if (!users || users.length === 0) {
+                    alert("No users found.");
+                    return;
+                }
 
+                const user = users.find(user => user.email === email);
                 if (!user) {
                     alert("User not found. Please check your email or register.");
                     return;
@@ -93,14 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // Store user session in localStorage
+                // Store user session
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
 
                 alert(`Welcome, ${user.username}!`);
-                window.location.href = "index.html"; // Redirect to homepage after login
+                window.location.href = "index.html"; 
             } catch (error) {
                 console.error("Error logging in:", error);
-                alert("An error occurred while logging in. Please try again later.");
+                alert("An error occurred while logging in. Please try again.");
             }
         });
     }
@@ -108,13 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Logout Functionality
     if (logoutButton) {
         logoutButton.addEventListener("click", () => {
-            localStorage.clear(); // Clears all stored user data
+            localStorage.clear();
             alert("You have been logged out.");
-            window.location.href = "login.html"; // Redirect to login page
+            window.location.href = "login.html";
         });
     }
 
-    // Check if user is logged in and update UI
+    // Check if user is logged in
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user) {
         const userInfoElement = document.getElementById("user-info");
@@ -125,12 +138,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (logoutContainer) {
-            logoutContainer.style.display = "block"; // Show logout button
+            logoutContainer.style.display = "block";
         }
     } else {
         const logoutContainer = document.getElementById("logout-container");
         if (logoutContainer) {
-            logoutContainer.style.display = "none"; // Hide logout button
+            logoutContainer.style.display = "none";
         }
     }
 });
